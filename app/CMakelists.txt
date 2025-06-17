@@ -1,0 +1,16 @@
+set(TARGET_NAME ${CMAKE_PROJECT_NAME})
+
+add_executable(${TARGET_NAME}
+)
+
+target_sources(${TARGET_NAME} PRIVATE
+    main.cpp
+)
+
+target_link_libraries(${TARGET_NAME} PUBLIC
+    tinyGames_Dice
+    tinyGames_Shifumi
+)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
