@@ -7,7 +7,7 @@
 
 #include "Shifumi.h"
 
-inline const char* toString(ShifumiChoice choice) {
+inline const char* toString(const ShifumiChoice choice) {
     switch (choice) {
     case ShifumiChoice::Rock:     return "Rock";
     case ShifumiChoice::Paper:    return "Paper";

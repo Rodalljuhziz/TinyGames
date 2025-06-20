@@ -16,11 +16,14 @@ enum class ShifumiChoice {
 class Shifumi {
 public:
     Shifumi();
+    void shifumiMenu();
+    void playerChoice(int choice);
+    ShifumiChoice intToShifumiChoice(int choice);
     int setRoundNumber(int numberOfRounds);
-    static int isWinner(ShifumiChoice playerChoice, int &isWon);
+    int isWinner(ShifumiChoice playerChoice, int &isWon);
 
 private:
-    static ShifumiChoice generateComputerChoice();
+    ShifumiChoice generateComputerChoice();
 
     int m_numberOfRounds = 1;
 };

@@ -16,6 +16,8 @@ class Dice {
 
 public:
     Dice();
+    void diceMenu();
+    void playerChoice(int choice);
     int setDieFaces(int numberOfFaces);
     int roll(int &result) const;
 
