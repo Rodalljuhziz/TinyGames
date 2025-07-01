@@ -1,8 +1,4 @@
-set(TARGET_NAME tinyGames_Dice)
-
-add_library(${TARGET_NAME} STATIC)
-
-target_sources(${TARGET_NAME} PRIVATE
+add_library(TinyGamesDice
         Dice.cpp
         Dice.h
 )

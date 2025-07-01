@@ -2,13 +2,14 @@
 // Created by walcz on 17/06/2025.
 //
 
-#include <iostream>
-#include "../lib/Dice/Dice.h"
-#include "../lib/Shifumi/Shifumi.h"
-#include <thread>
-#include <chrono>
-#include <limits>
+#include "TinyGamesLauncher.h"
 
+int main() {
+    TinyGamesLauncher launcher;
+    launcher.run();
+    return 0;
+}
+/*
 void tinyGameMenu()
 {
     std::cout << "Welcome to the Tiny Game Menu!" << std::endl;
@@ -18,10 +19,16 @@ void tinyGameMenu()
     std::cout << "Please enter your choice (1-3): ";
 }
 
+
 int main(int argc, char *argv[])
 {
+    std::cout << "Constructing Shifumi..." << std::endl;
     Shifumi shifumi;
+    std::cout << "Shifumi constructed." << std::endl;
+
+    std::cout << "Constructing Dice..." << std::endl;
     Dice dice;
+    std::cout << "Dice constructed." << std::endl;
     int choice;
     bool running = true;
 
@@ -49,9 +56,15 @@ int main(int argc, char *argv[])
             std::cout << "Exiting the game. Goodbye!" << std::endl;
             running = false;
             break;
+        case 4:
+           std::cout << "Switch to Sdl" << std::endl;
+            break;
+        case 5:
+            std::cout << "Switch to Qt" << std::endl;
+            break;
         default:
             std::cout << "Invalid choice. Please enter a number between 1 and 3." << std::endl;
-            break; // ici on ne fait pas "return 1", on continue la boucle
+            break;
         }
     }
 
@@ -65,3 +78,4 @@ int main(int argc, char *argv[])
     std::cout << "." << std::endl;
     return 0;
 }
+*/

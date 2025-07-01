@@ -4,55 +4,15 @@
 
 #include "Dice.h"
 #include <random>
-#include <iostream>
-#include <limits>
 
-Dice::Dice()
+Dice::Dice(const int numberOfFaces) : m_numberOfFaces(numberOfFaces)
 {
-}
-
-
-void Dice::diceMenu()
-{
-    bool running = true;
-    std::string yesNoInput;
-
-    std::cout << "==== Welcome to Dice roll! ===" << std::endl;
-
-    while (running)
-    {
-        int menuChoice;;
-
-        std::cout << "Dice initialized with " << m_numberOfFaces << " faces." << std::endl;
-
-        std::cout << "1. Let's roll the dice!" << std::endl;
-        std::cout << "2. Change numbers of faces" << std::endl;
-        std::cout << "3. Return to main menu" << std::endl;
-        std::cout << "4. Quit the application" << std::endl;
-        std::cout << "Please enter your choice (1-4): ";
-        std::cin >> menuChoice;
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Invalid input. Please enter a number between 1 and 3." << std::endl;
-            continue;
-        }
-
-        if (menuChoice == 3) {
-            running = false;
-        } else if (menuChoice == 4) {
-            exit(0);
-        } else {
-            playerChoice(menuChoice);
-        }
-    }
 
 }
 
 void Dice::playerChoice(const int choice)
 {
-    int numberOfFaces;
+    /*
     switch(choice)
     {
         case 1:
@@ -86,6 +46,7 @@ void Dice::playerChoice(const int choice)
 
         case 2:
         {
+            int numberOfFaces;
             std::cout << "Enter the number of faces for the dice: ";
             std::cin >> numberOfFaces;
             if(numberOfFaces < 1)
@@ -100,16 +61,21 @@ void Dice::playerChoice(const int choice)
             std::cout <<  "Invalid choice. Please enter a number between 1 and 4." << std::endl;
             break;
     }
+    */
+}
+
+int Dice::getNumberOfFaces() const
+{
+    return m_numberOfFaces;
 }
 
 int Dice::setDieFaces(const int numberOfFaces)
 {
-    m_numberOfFaces = numberOfFaces;
-    if(m_numberOfFaces < 0)
+    if (numberOfFaces < 1)
     {
-        m_numberOfFaces = 6;
         return 0x0FF10001;
     }
+    m_numberOfFaces = numberOfFaces;
     return 0;
 }
 
@@ -119,6 +85,7 @@ int Dice::roll(int &result) const
     {
         return 0x0FF10000;
     }
+
     static std::random_device random;
     static std::mt19937 generator(random());
     std::uniform_int_distribution<> dis(1, m_numberOfFaces);

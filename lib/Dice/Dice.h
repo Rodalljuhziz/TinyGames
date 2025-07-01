@@ -15,9 +15,9 @@ enum class DiceError {
 class Dice {
 
 public:
-    Dice();
-    void diceMenu();
+    explicit Dice(int numberOfFaces);
     void playerChoice(int choice);
+    int getNumberOfFaces() const;
     int setDieFaces(int numberOfFaces);
     int roll(int &result) const;
 

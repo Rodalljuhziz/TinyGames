@@ -12,4 +12,7 @@ enable_testing()
 include(cmake/googletest.cmake)
 
 add_subdirectory(lib)
+add_subdirectory(ui/Console)
+# add_subdirectory(ui/SDL)
+# add_subdirectory(ui/Qt)
 add_subdirectory(app)

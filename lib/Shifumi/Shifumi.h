@@ -5,6 +5,7 @@
 #ifndef SHIFUMI_H
 #define SHIFUMI_H
 
+#include <iostream>
 
 enum class ShifumiChoice {
     Rock,
@@ -16,15 +17,15 @@ enum class ShifumiChoice {
 class Shifumi {
 public:
     Shifumi();
-    void shifumiMenu();
-    void playerChoice(int choice);
     ShifumiChoice intToShifumiChoice(int choice);
+    int getRoundNumber() const;
     int setRoundNumber(int numberOfRounds);
-    int isWinner(ShifumiChoice playerChoice, int &isWon);
+    std::string isWinner(ShifumiChoice playerChoice, int &isWon);
+    int createPlayer(std::string &playerName);
+    int selectPlayer(std::string &playerName);
 
 private:
     ShifumiChoice generateComputerChoice();
-
     int m_numberOfRounds = 1;
 };
 

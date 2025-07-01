@@ -15,9 +15,18 @@ TEST(ShifumiTest , setNumberOfRounds)
 TEST(ShifumiTest, whoWins)
 {
     int isWon;
-    const int error = Shifumi::isWinner(ShifumiChoice::Rock, isWon);
+    Shifumi shifumi;
+    const int error = shifumi.isWinner(ShifumiChoice::Rock, isWon);
     EXPECT_EQ(error, 0);
     EXPECT_GE(isWon, 1);
     EXPECT_LE(isWon, 3);
 
+}
+
+TEST(ShifumiTest, createPlayer)
+{
+    Shifumi shifumi;
+    std::string name = "Tom";
+    const int error = shifumi.createPlayer(name);
+    EXPECT_EQ(error, 0);
 }
