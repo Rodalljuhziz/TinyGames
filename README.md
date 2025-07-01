@@ -15,7 +15,9 @@ TinyGames/
 ├── CMakeLists.txt                      # Root CMake
 ├── app/
 │   ├── CMakeLists.txt                  # Builds main.cpp
-│   └── main.cpp                        # Entry point
+│   ├── main.cpp                        # Entry point
+│   ├── TinyGamesLaunchercpp
+│   └── TinyGamesLaunchercpp.h
 ├── lib/
 │   ├── CMakeLists.txt 
 │   ├── Dice/
@@ -32,7 +34,24 @@ TinyGames/
 │   │   ├── ShifumiUtils.h
 │   │   └── test/
 │   │       ├── CMakeLists.txt
-│   │       └── test_Shifumi.cpp
+│   └       └── test_Shifumi.cpp
+├── ui/
+│   ├── Console/
+│   │   ├── CMakeLists.txt
+│   │   ├── DiceConsoleUi.cpp
+│   │   ├── DiceConsoleUi.h
+│   │   ├── ShifumiConsoleUi.cpp
+│   │   └── ShifumiConsoleUi.h
+│   ├── Qt/
+│   │   ├── CMakeLists.txt
+│   │   ├── DiceConsoleUi.cpp
+│   │   └── DiceConsoleUi.h
+│   ├── SDL/
+│   │   ├── CMakeLists.txt
+│   │   ├── DiceSDLUi.cpp
+│   └   └── DiceSDLUi.h
+├── LICENSE                            # Project license
+└── README.md                          # Project documentation 
 ```
 
 Each module is built as a static library (`STATIC`) and has its own test executable.
