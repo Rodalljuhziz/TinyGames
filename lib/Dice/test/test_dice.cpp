@@ -5,15 +5,15 @@
 #include <gtest/gtest.h>
 #include "../Dice.h"
 
-TEST(DiceTest , setDiceFaces)
+TEST(DiceTest, setDiceFaces)
 {
-    Dice dice;
+    Dice dice(6);
     const int error = dice.setDieFaces(6);
     EXPECT_EQ(error, 0);
 }
 
 TEST(DiceTest, RollsBetweenOneAndSix) {
-    Dice dice;
+    Dice dice(6);
     int error = dice.setDieFaces(6);
     EXPECT_EQ(error, 0);
     if(error == 0)

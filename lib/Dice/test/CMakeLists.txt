@@ -5,7 +5,7 @@ add_executable( testDice
 target_link_libraries( testDice PUBLIC
         GTest::gtest_main
         GTest::gtest
-        tinyGames_Dice
+        TinyGamesDice
 )
 
 add_test( NAME testDice

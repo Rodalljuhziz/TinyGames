@@ -5,7 +5,7 @@ add_executable( testShifumi
 target_link_libraries( testShifumi PUBLIC
         GTest::gtest_main
         GTest::gtest
-        tinyGames_Shifumi
+        TinyGamesShifumi
 )
 
 add_test( NAME testShifumi
