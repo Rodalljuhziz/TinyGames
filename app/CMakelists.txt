@@ -11,7 +11,13 @@ target_sources(${TARGET_NAME} PRIVATE
 
 target_link_libraries(${TARGET_NAME} PUBLIC
     TinyGamesConsoleUI
+    TinyGamesQtUI
+    TinyGamesSDLUI
     glog::glog
+    SDL3::SDL3
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Widgets
 )
 
 set(CMAKE_CXX_STANDARD 17)
@@ -38,5 +44,13 @@ function(copy_mingw_dlls target_name)
         endforeach()
     endforeach()
 endfunction()
+
+set(WINDEPLOYQT_EXECUTABLE "C:/Qt/6.9.1/mingw_64/bin/windeployqt.exe")
+
+add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+        COMMAND "${WINDEPLOYQT_EXECUTABLE}"
+        "$<TARGET_FILE:${TARGET_NAME}>"
+        COMMENT "Running windeployqt on ${TARGET_NAME}"
+)
 
 copy_mingw_dlls(${TARGET_NAME})

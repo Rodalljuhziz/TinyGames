@@ -3,3 +3,9 @@
 //
 
 #include "DiceSDLUi.h"
+#include <SDL3/SDL.h>
+
+void DiceSDLUi::run()
+{
+
+}

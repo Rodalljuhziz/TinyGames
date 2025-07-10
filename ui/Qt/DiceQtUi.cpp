@@ -3,3 +3,9 @@
 //
 
 #include "DiceQtUi.h"
+
+
+void DiceQtUi::run()
+{
+
+}

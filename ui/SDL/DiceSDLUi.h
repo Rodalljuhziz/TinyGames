@@ -5,8 +5,6 @@
 #ifndef DICESDLUI_H
 #define DICESDLUI_H
 
-
-
 class DiceSDLUi {
     public:
         void run();

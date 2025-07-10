@@ -3,9 +3,14 @@
 //
 
 #include "TinyGamesLauncher.h"
+#include <QApplication>
 
 #include "../ui/Console/DiceConsoleUi.h"
 #include "../ui/Console/ShifumiConsoleUi.h"
+#include "../ui/Qt/DiceQtUi.h"
+#include "../ui/Qt/ShifumiQtUi.h"
+#include "../ui/SDL/DiceSDLUi.h"
+#include "../ui/SDL/ShifumiSDLUi.h"
 
 #include <iostream>
 #include <limits>
@@ -35,14 +40,27 @@ void TinyGamesLauncher::run()
         case 1:
             if (m_currentBackend == Backend::Console) {
                 DiceConsoleUi().run();
-            } else {
+            } else if (m_currentBackend == Backend::Qt)
+            {
+                DiceQtUi().run();
+                std::cout << "[TODO] Dice in this backend not implemented yet.\n";
+            } else if(m_currentBackend == Backend::SDL)
+            {
+                DiceSDLUi().run();
                 std::cout << "[TODO] Dice in this backend not implemented yet.\n";
             }
+            break;
             break;
         case 2:
             if (m_currentBackend == Backend::Console) {
                 ShifumiConsoleUi().run();
-            } else {
+            } else if (m_currentBackend == Backend::Qt)
+            {
+                ShifumiQtUi().run();
+                std::cout << "[TODO] Shifumi in this backend not implemented yet.\n";
+            } else if(m_currentBackend == Backend::SDL)
+            {
+                ShifumiSDLUi().run();
                 std::cout << "[TODO] Shifumi in this backend not implemented yet.\n";
             }
             break;

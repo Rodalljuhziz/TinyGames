@@ -14,6 +14,9 @@ Currently included:
 TinyGames/
 ├── CMakeLists.txt                      # Root CMake
 ├── app/
+│   ├── json.hpp
+│   └── glog/
+├── app/
 │   ├── CMakeLists.txt                  # Builds main.cpp
 │   ├── main.cpp                        # Entry point
 │   ├── TinyGamesLaunchercpp

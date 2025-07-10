@@ -178,10 +178,10 @@ int Shifumi::deletePlayer(std::string& playerName) const
 }
 
 
-int Shifumi::selectPlayer(std::string& playerName)
+int Shifumi::selectPlayer(const std::string& playerName)
 {
     namespace fs = std::filesystem;
-    fs::path filePath = fs::path(m_filepathPlayerJson) / "players.json";
+    const fs::path filePath = fs::path(m_filepathPlayerJson) / "players.json";
     json playerJSON;
 
     std::ifstream file(filePath);

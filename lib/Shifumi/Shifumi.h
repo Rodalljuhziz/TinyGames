@@ -23,7 +23,7 @@ public:
     std::string isWinner(ShifumiChoice playerChoice, int &isWon);
     int createPlayer(std::string &playerName) const;
     int deletePlayer(std::string &playerName) const;
-    int selectPlayer(std::string &playerName);
+    int selectPlayer(const std::string &playerName);
     int setFilepathPlayerJson(const std::string &filepath);
     std::string getFilepathPlayerJson();
 
