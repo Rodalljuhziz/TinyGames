@@ -5,95 +5,123 @@
 #include "TinyGamesLauncher.h"
 #include <QApplication>
 
-#include "../ui/Console/DiceConsoleUi.h"
-#include "../ui/Console/ShifumiConsoleUi.h"
-#include "../ui/Qt/DiceQtUi.h"
-#include "../ui/Qt/ShifumiQtUi.h"
-#include "../ui/SDL/DiceSDLUi.h"
-#include "../ui/SDL/ShifumiSDLUi.h"
+#include "../ui/Console/tinyGamesConsole.h"
+#include "../ui/Qt/tinyGamesQt.h"
+#include "../ui/SDL/tinyGamesSDL.h"
 
-#include <iostream>
-#include <limits>
-#include <thread>
+TinyGamesLauncher::TinyGamesLauncher()
+{
+    m_currentBackend = Backend::Console; // Default backend is Console
+}
 
 void TinyGamesLauncher::run()
 {
     bool running = true;
-    while (running) {
-        std::cout << "=== TinyGames Menu (" << (m_currentBackend == Backend::Console ? "Console" : m_currentBackend == Backend::SDL ? "SDL" : "Qt") << ") ===\n";
-        std::cout << "1. Play Dice\n";
-        std::cout << "2. Play Shifumi\n";
-        std::cout << "3. Switch UI Backend\n";
-        std::cout << "4. Quit\n";
-        std::cout << "Choice: ";
 
-        int choice;
-        std::cin >> choice;
-        if (std::cin.fail()) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Invalid input.\n";
-            continue;
-        }
+    while (running)
+    {
+        switch (m_currentBackend)
+        {
+            case Backend::Console: {
+                tinyGamesConsole consoleUi(this);
+                consoleUi.menu();
+                break;
+            }
+            case Backend::Qt: {
+                if (!m_qtUi)
+                    m_qtUi = new tinyGamesQt(nullptr, this);
 
-        switch (choice) {
-        case 1:
-            if (m_currentBackend == Backend::Console) {
-                DiceConsoleUi().run();
-            } else if (m_currentBackend == Backend::Qt)
-            {
-                DiceQtUi().run();
-                std::cout << "[TODO] Dice in this backend not implemented yet.\n";
-            } else if(m_currentBackend == Backend::SDL)
-            {
-                DiceSDLUi().run();
-                std::cout << "[TODO] Dice in this backend not implemented yet.\n";
+                m_qtUi->menu();
+                running = false;
+                break;
             }
-            break;
-            break;
-        case 2:
-            if (m_currentBackend == Backend::Console) {
-                ShifumiConsoleUi().run();
-            } else if (m_currentBackend == Backend::Qt)
-            {
-                ShifumiQtUi().run();
-                std::cout << "[TODO] Shifumi in this backend not implemented yet.\n";
-            } else if(m_currentBackend == Backend::SDL)
-            {
-                ShifumiSDLUi().run();
-                std::cout << "[TODO] Shifumi in this backend not implemented yet.\n";
+            case Backend::SDL: {
+                tinyGamesSDL sdlUi(this);
+                sdlUi.menu();
+                break;
             }
-            break;
-        case 3:
-            switchBackend();
-            break;
-        case 4:
-            running = false;
-            break;
-        default:
-            std::cout << "Invalid choice.\n";
+            case Backend::Error:
+                running = false;
+                break;
         }
     }
-
-    std::cout << "Thank you for playing!";
-    std::this_thread::sleep_for(std::chrono::milliseconds(1500));
-    std::cout << "\n";
 }
 
-void TinyGamesLauncher::switchBackend() {
-    if (m_currentBackend == Backend::Console)
-        m_currentBackend = Backend::SDL;
-    else if (m_currentBackend == Backend::SDL)
-        m_currentBackend = Backend::Qt;
-    else
-        m_currentBackend = Backend::Console;
-
-    std::cout << "Switched to ";
-    if (m_currentBackend == Backend::Console)
-        std::cout << "Console";
-    else if (m_currentBackend == Backend::SDL)
-        std::cout << "SDL";
-    else
-        std::cout << "Qt";
-    std::cout << " backend.\n";
+void TinyGamesLauncher::requestBackendSwitch(Backend newBackend)
+{
+    if (newBackend != m_currentBackend) {
+        m_currentBackend = newBackend;
+    }
 }
+
+Backend TinyGamesLauncher::getCurrentBackend() const
+{
+    return m_currentBackend;
+}
+
+std::string TinyGamesLauncher::switchBackend(const Backend newBackend) const
+{
+    std::string message;
+    if(newBackend == m_currentBackend)
+    {
+        message = "Backend Already in use";
+    }
+    else if(newBackend == Backend::Console)
+    {
+        message = "Switch to console ui";
+    }
+    else if(newBackend == Backend::Qt)
+    {
+        message = "Switch to Qt ui";
+    }
+    else if(newBackend == Backend::SDL)
+    {
+        message = "Switch to SDL ui";
+    }
+
+    return message;
+}
+
+/*
+Backend TinyGamesLauncher::choiceBackend()
+{
+
+    int choice;
+
+    if(m_currentBackend == Backend::Console)
+    {
+        std::cout << "Choose a backend:\n";
+        std::cout << "1. Console\n";
+        std::cout << "2. SDL\n";
+        std::cout << "3. Qt\n";
+        std::cin >> choice;
+    }
+    else if(m_currentBackend == Backend::SDL)
+    {
+
+    }
+    else if(m_currentBackend == Backend::Qt)
+    {
+
+        ShifumiQtUi shifumiQtUi;
+        shifumiQtUi.switchUiBackend();
+
+    }
+    switch(choice)
+    {
+        case 1:
+            m_currentBackend = Backend::Console;
+            break;
+        case 2:
+            m_currentBackend = Backend::SDL;
+            break;
+        case 3:
+            m_currentBackend = Backend::Qt;
+            break;
+    default:
+        std::cout << "Invalid choice, defaulting to Console backend.\n";
+    }
+
+    return m_currentBackend;
+}
+*/

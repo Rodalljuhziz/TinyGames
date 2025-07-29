@@ -39,20 +39,19 @@ TinyGames/
 │   │       ├── CMakeLists.txt
 │   └       └── test_Shifumi.cpp
 ├── ui/
+│   ├── IGameUi.h
 │   ├── Console/
 │   │   ├── CMakeLists.txt
-│   │   ├── DiceConsoleUi.cpp
-│   │   ├── DiceConsoleUi.h
-│   │   ├── ShifumiConsoleUi.cpp
-│   │   └── ShifumiConsoleUi.h
+│   │   ├── tinyGamesConsole.cpp
+│   │   └── tinyGamesConsole.h
 │   ├── Qt/
 │   │   ├── CMakeLists.txt
-│   │   ├── DiceConsoleUi.cpp
-│   │   └── DiceConsoleUi.h
+│   │   ├── tinyGamesQt.cpp
+│   │   └── tinyGamesQt.h
 │   ├── SDL/
 │   │   ├── CMakeLists.txt
-│   │   ├── DiceSDLUi.cpp
-│   └   └── DiceSDLUi.h
+│   │   ├── tinyGamesSDL.cpp
+│   └   └── tinyGamesSDL.h
 ├── LICENSE                            # Project license
 └── README.md                          # Project documentation 
 ```

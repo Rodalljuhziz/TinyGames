@@ -6,11 +6,9 @@ set(CMAKE_AUTORCC ON)
 
 
 add_library(TinyGamesQtUI
-        DiceQtUI.cpp
-        DiceQtUI.h
-        ShifumiQtUi.cpp
-        ShifumiQtUi.h
         tinyGamesQt.ui
+        tinyGamesQt.cpp
+        tinyGamesQt.h
 )
 
 target_link_libraries(TinyGamesQtUI
@@ -19,6 +17,8 @@ target_link_libraries(TinyGamesQtUI
         Qt6::Widgets
         Qt6::Gui
 )
+
+include_directories(${CMAKE_SOURCE_DIR}/ui)
 
 target_include_directories(TinyGamesQtUI
         PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}
